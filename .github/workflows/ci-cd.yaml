@@ -24,17 +24,20 @@ jobs:
           cd app/sample-spring-boot-app/sample-app
           mvn clean test package
 
+      - name: Set lowercase repo owner
+        run: echo "OWNER_LOWER=$(echo $GITHUB_REPOSITORY_OWNER | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+
       - name: Build Docker image
         run: |
-          docker build -t ghcr.io/${{ github.repository_owner,, }}/artem-devops-assignment/spring-app:${{ github.sha }} -f docker/Dockerfile .
-      
+          docker build -t ghcr.io/${OWNER_LOWER}/artem-devops-assignment/spring-app:${{ github.sha }} -f docker/Dockerfile .
 
       - name: Login to GHCR
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
       - name: Push Docker image
         run: |
-          docker push ghcr.io/${{ github.repository_owner,, }}/artem-devops-assignment/spring-app:${{ github.sha }}
+          docker push ghcr.io/${OWNER_LOWER}/artem-devops-assignment/spring-app:${{ github.sha }}
+      
       
 
       - name: Deploy to Dev
