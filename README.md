@@ -1,7 +1,9 @@
 # DevOps Engineer Assignment – Artem HealthTech
 ## Overview
+
 This repository demonstrates a hands-on DevOps workflow covering CI/CD, containerization, Kubernetes deployment, and operational thinking for a Spring Boot application.
 The focus of this assignment is on **clarity, stability, automation, and cost awareness**, rather than over-engineering.
+
 ---
 ## Tech Stack
 - Java 17
@@ -14,33 +16,28 @@ The focus of this assignment is on **clarity, stability, automation, and cost aw
 - Kafka (Docker-based)
 ---
 ## Repository Structure
-.
-├── app/
-├── ci/
-├── docker/
-├── k8s/
-│ ├── dev/
-│ └── qa/
-├── docker-compose.yaml
-├── stability-cost.md
-└── README.md
+![img_1.png](img_1.png)
 ---
 ## CI/CD Pipeline
-The CI/CD pipeline is implemented using **GitHub Actions** and follows these stages:
+The CI/CD pipeline is implemented using GitHub Actions and follows these stages:
 1. Source code checkout
 2. Java 17 setup
 3. Maven build and tests
 4. Docker image build
 5. Push image to GitHub Container Registry (GHCR)
 6. Logical deployment step for Dev environment
-The pipeline is designed to **fail fast** and ensure only validated builds are containerized and promoted.
+The pipeline is designed to fail fast and ensure only validated builds are containerized and promoted.
 Pipeline configuration can be found under:
 ci/github-actions.yaml
 ---
 ## Docker
+
 The application is containerized using a lightweight Java 17 JRE base image to reduce image size and improve startup time.
+
 Dockerfile location:
+
 docker/Dockerfile
+
 ---
 ## Kubernetes Deployment
 Kubernetes manifests are provided for **Dev** and **QA** environments with the following characteristics:
@@ -53,6 +50,7 @@ Kubernetes manifests are provided for **Dev** and **QA** environments with the f
 Manifests location:
 
 k8s/dev
+
 k8s/qa
 
 ---
@@ -94,6 +92,6 @@ curl http://localhost:8080/actuator/health
 
 
 
-Author
+**Author**
 
-Geetesh Singh
+**Geetesh Singh**
